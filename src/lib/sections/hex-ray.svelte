@@ -1,14 +1,6 @@
 <script lang="ts">
 	import Table from '$lib/ui/table.svelte';
 	export let hex: string = '';
-	export let hexLength: number;
-
-	function padL(s: string, l: number): string {
-		while (s.length < l || 2) {
-			s = `0${s}`;
-		}
-		return s;
-	}
 
 	$: chunkyBois = hex
 		.split('')

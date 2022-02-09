@@ -8,7 +8,9 @@
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
 		<ul>
-			<li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Dr. Hexo</a></li>
+			<li class:active={$page.url.pathname === '/'}>
+				<a sveltekit:prefetch href="/">What The Hex</a>
+			</li>
 			<li class="mt-6">
 				<img class="w-8" src="/images/sd-white.svg" />
 			</li>

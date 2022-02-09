@@ -60,7 +60,7 @@
 </script>
 
 <svelte:head>
-	<title>Dr. Hexo</title>
+	<title>WhatTheHex</title>
 </svelte:head>
 
 <section class="max-w-xl m-auto">
