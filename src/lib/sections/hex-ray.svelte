@@ -2,7 +2,7 @@
 	import Table from '$lib/ui/table.svelte';
 	export let hex: string = '';
 
-	$: chunkyBois = hex
+	$: chunkyBois = (hex || '')
 		.split('')
 		.reverse()
 		.reduce((acc, curr) => {

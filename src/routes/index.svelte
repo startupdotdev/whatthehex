@@ -4,6 +4,7 @@
 
 <script lang="ts">
 	import ConversionTable from '$lib/sections/conversion-table.svelte';
+	import DetectionDetective from '$lib/sections/detection-detective.svelte';
 	import HexRay from '$lib/sections/hex-ray.svelte';
 	import {
 		isHex,
@@ -25,21 +26,28 @@
 	let i = '';
 	let error: boolean = false;
 
+	let detectedHex: bool = false;
+	let detectedBinary: bool = false;
+	let detectedDecimal: bool = false;
+
 	onMount(async () => {
 		i = '0x00000000000012345';
 	});
 
 	function parseInput(i: string) {
 		let hex: string, binary: string, decimal: string;
-		if (isHex(i)) {
+		detectedHex = isHex(i);
+		detectedBinary = isBinary(i);
+		detectedDecimal = isDecimal(i);
+		if (detectedHex) {
 			hex = hexToHex(i);
 			binary = hexToBinary(i);
 			decimal = hexToDecimal(i);
-		} else if (isBinary(i)) {
+		} else if (detectedBinary) {
 			binary = binaryToBinary(i);
 			hex = binaryToHex(i);
 			decimal = binaryToDecimal(i);
-		} else if (isDecimal(i)) {
+		} else if (detectedDecimal) {
 			decimal = decimalToDecimal(i);
 			hex = decimalToHex(i);
 			binary = decimalToBinary(i);
@@ -47,6 +55,9 @@
 			error = true;
 		}
 		return {
+			detectedHex,
+			detectedBinary,
+			detectedDecimal,
 			hex,
 			binary,
 			decimal
@@ -67,7 +78,7 @@
 	<div class="mt-16">
 		<input bind:value={i} class="border-b py-2 px-4 w-full focus:ring-0 outline-none text-3xl" />
 	</div>
-
+	<DetectionDetective {detectedHex} {detectedBinary} {detectedDecimal} />
 	<ConversionTable {hex} {binary} {decimal} />
 	<HexRay {hex} />
 </section>

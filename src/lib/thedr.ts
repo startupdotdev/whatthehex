@@ -1,13 +1,17 @@
 export function isHex(i: string): boolean {
-  return i.indexOf('0x') === 0;
+  const matchesHexRegex = (i: string) => /^[0-9a-fA-F][0-9a-fA-F]*[0-9a-fA-F]$/.test(i);
+  return (i.indexOf('0x') === 0 && matchesHexRegex(i.slice(2))) ||
+    matchesHexRegex(i);
 }
 
 export function isBinary(i: string): boolean {
-  return i.indexOf('0b') === 0;
+  const matchesBinRegex = (i: string) => /^[0-1][0-1]*[0-1]$/.test(i);
+  return (i.indexOf('0b') === 0 && matchesBinRegex(i.slice(2))) ||
+    matchesBinRegex(i);
 }
 
 export function isDecimal(i: string): boolean {
-  return i.indexOf('0') === 0;
+  return /^[1-9][0-9]*[0-9]$/.test(i);
 }
 
 export function hexToHex(i: string): string {
